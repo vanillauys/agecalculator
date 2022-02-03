@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<meta charset="UTF-8">
+<title>{{title}}</title>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Lato&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}" type="text/css">
+<!-- <script src=""></script> -->
+<body>
+	{% block content %}
+	<div class="header">
+		<h1>Age Calculator</h1>
+		<p>Wihan Uys</p>
+		<div class = "searchbox">
+			<form method="post">
+				<p>Date range:</p>
+				<p><input type="date" name="start_date">Start Date</p>
+                <p><input type="date" name="end_date">End Date</p>
+				<p><input type="submit" value="Calculate"></p>
+			</form>	
+		</div>
+	</div>
+	
+	<div class="results">
+        
+    </div>
+	{% endblock %}
+</body>
+</html>
