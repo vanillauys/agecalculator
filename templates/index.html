@@ -6,40 +6,41 @@
 <link rel="preconnect" href="https://fonts.gstatic.com">
 <link href="https://fonts.googleapis.com/css2?family=Lato&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="{{ url_for('static', filename='main.css') }}" type="text/css">
+
 <!-- <script src=""></script> -->
 <body>
 	{% block content %}
 	<div class="header">
 		<h1>Age Calculator</h1>
-		<p>Wihan Uys</p>
+		<h3>Wihan Uys</h3>
 		<div class = "searchbox">
 			<form method="post">
-				<p>Date range:</p>
-				<p><input type="date" name="start_date" required>Date of birth</p>
-                <p><input type="date" name="end_date" required>Age at the date of</p>
-				<p><input type="submit" value="Calculate"></p>
+				<h4>Date range:</h4>
+				<p>Start Date : <input type="date" name="start_date" required class="date"></p>
+                <p>End Date   : <input type="date" name="end_date" required class="date"></p>
+				<p><input type="submit" value="Calculate" class="btn"></p>
 			</form>	
 		</div>
 	</div>
 	{% if not correct_dates %}
-	<p>Note: End date cannot be before start date</p>
+	<p class="warning">Note: End date cannot be before start date</p>
 	{% endif %}
 	{% if has_results %}
 		<div class="results">
-			<h4>Results</h4>
+			<h4>Results for: {{start_date}} to {{end_date}}</h4>
 			{% if results[5][0][0] > 0 %}
-				<p>Years: {{results[5][0][0]}}, Months: {{results[5][0][1]}}, Days: {{results[5][0][2]}}</p>
+				<p>{{results[5][0][0]}} Years, {{results[5][0][1]}} Months and {{results[5][0][2]}} Days</p>
 			{% endif %}
 			{% if results[5][1][0] > 0 %}
-				<p>Months: {{results[5][1][0]}}, Days: {{results[5][1][1]}}</p>
+				<p>{{results[5][1][0]}} Months and {{results[5][1][1]}} Days</p>
 			{% endif %}
 			{% if results[4][0] > 0 %}
-				<p>Weeks {{results[4][0]}}{% if results[4][1] > 0 %}, Days: {{results[4][1]}}{% endif %}</p>
+				<p>{{results[4][0]}} Weeks {% if results[4][1] > 0 %} and {{results[4][1]}} Days{% endif %}</p>
 			{% endif %}
-			<p>Days: {{results[3]}}</p>
-			<p>Hours: {{results[2]}}</p>
-			<p>Minutes: {{results[1]}}</p>
-			<p>Seconds: {{results[0]}}</p>
+			<p>{{results[3]}} Days</p>
+			<p>{{results[2]}} Hours</p>
+			<p>{{results[1]}} Minutes</p>
+			<p>{{results[0]}} Seconds</p>
     	</div>
 	{% endif %}
 
