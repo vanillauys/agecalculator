@@ -4,7 +4,7 @@ import age_calculator
 app = Flask(__name__)
 
 @app.route('/', methods=["GET", "POST"])
-def get_age():
+def index():
     if request.method == 'POST':
         start_date = request.form["start_date"]
         end_date = request.form["end_date"]
@@ -12,7 +12,6 @@ def get_age():
         return render_template('index.html')
     else:
         return render_template('index.html')
-
 
 
 if __name__ == '__main__':
