@@ -9,9 +9,12 @@ def index():
         start_date = request.form["start_date"]
         end_date = request.form["end_date"]
         age = age_calculator.get_age(start_date, end_date)
-        return render_template('index.html')
+        if age:
+            return render_template('index.html', has_results=True, results=age, correct_dates=True)
+        else:
+            return render_template('index.html', has_results=False, results=[], correct_dates=False)
     else:
-        return render_template('index.html')
+        return render_template('index.html', has_results=False, results=[], correct_dates=True)
 
 
 if __name__ == '__main__':

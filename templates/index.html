@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <link rel="preconnect" href="https://fonts.gstatic.com">
 <link href="https://fonts.googleapis.com/css2?family=Lato&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}" type="text/css">
+<link rel="stylesheet" href="{{ url_for('static', filename='main.css') }}" type="text/css">
 <!-- <script src=""></script> -->
 <body>
 	{% block content %}
@@ -15,16 +15,34 @@
 		<div class = "searchbox">
 			<form method="post">
 				<p>Date range:</p>
-				<p><input type="date" name="start_date">Date of birth</p>
-                <p><input type="date" name="end_date">Age at the date of</p>
+				<p><input type="date" name="start_date" required>Date of birth</p>
+                <p><input type="date" name="end_date" required>Age at the date of</p>
 				<p><input type="submit" value="Calculate"></p>
 			</form>	
 		</div>
 	</div>
-	
-	<div class="results">
-        
-    </div>
+	{% if not correct_dates %}
+	<p>Note: End date cannot be before start date</p>
+	{% endif %}
+	{% if has_results %}
+		<div class="results">
+			<h4>Results</h4>
+			{% if results[5][0][0] > 0 %}
+				<p>Years: {{results[5][0][0]}}, Months: {{results[5][0][1]}}, Days: {{results[5][0][2]}}</p>
+			{% endif %}
+			{% if results[5][1][0] > 0 %}
+				<p>Months: {{results[5][1][0]}}, Days: {{results[5][1][1]}}</p>
+			{% endif %}
+			{% if results[4][0] > 0 %}
+				<p>Weeks {{results[4][0]}}{% if results[4][1] > 0 %}, Days: {{results[4][1]}}{% endif %}</p>
+			{% endif %}
+			<p>Days: {{results[3]}}</p>
+			<p>Hours: {{results[2]}}</p>
+			<p>Minutes: {{results[1]}}</p>
+			<p>Seconds: {{results[0]}}</p>
+    	</div>
+	{% endif %}
+
 	{% endblock %}
 </body>
 </html>

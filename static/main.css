@@ -7,10 +7,10 @@ body {
 }
 
 .header {
-	text-align: center;
 	padding: 10px;
 	background-color: rgb(201, 201, 201);
 	margin-bottom: 25px;
 	display: inline-block;
-	width: 100%;
+	width: 80%;
+	margin-left: 10%;
 }
